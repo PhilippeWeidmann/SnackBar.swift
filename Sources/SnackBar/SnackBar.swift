@@ -84,9 +84,13 @@ open class SnackBar: UIView, SnackBarAction, SnackBarPresentable {
 		view.setupSubview(self) {
 			
 			$0.makeConstraints {
+                if let maxWidth = style.maxWidth {
+                    $0.width.lessThanOrEqualTo(maxWidth).priority(.required)
+                    $0.centerX.equalTo(view.center).priority(.required)
+                }
 				$0.bottom.equalTo(view.safeAreaLayoutGuide).offset(200)
-				$0.leading.equalTo(view.safeAreaLayoutGuide).offset(style.padding)
-				$0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-style.padding)
+                $0.leading.equalTo(view.safeAreaLayoutGuide).offset(style.padding).priority(.medium)
+                $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-style.padding).priority(.medium)
 			}
 		}
 		
