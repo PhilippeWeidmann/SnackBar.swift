@@ -80,9 +80,8 @@ open class SnackBar: UIView, SnackBarAction, SnackBarPresentable {
 	}
 	
 	private func constraintSuperView(with view: UIView) {
-	
+        view.autoresizingMask = AutoresizingMask([.flexibleRightMargin, .flexibleLeftMargin, .flexibleHeight])
 		view.setupSubview(self) {
-			
 			$0.makeConstraints {
                 if let maxWidth = style.maxWidth {
                     $0.width.lessThanOrEqualTo(maxWidth).priority(.required)
